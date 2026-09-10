@@ -1,0 +1,19 @@
+# Everything MedChat needs.
+# Install with:   pip install -r requirements.txt
+#
+# These are minimum versions rather than exact pins, so pip can pick whatever
+# works on your Python version. Always run train.py after installing, so the
+# saved model is built by the same library version that will later load it.
+
+fastapi>=0.110            # the web server framework
+uvicorn>=0.27             # runs the web server
+python-multipart>=0.0.9   # lets the server receive uploaded files
+pydantic>=2.6             # checks incoming data is the right shape
+
+scikit-learn>=1.4         # trains the model and powers the Q&A search
+pandas>=2.0               # reads and cleans the CSV
+numpy>=1.26               # maths under the hood
+joblib>=1.3               # saves and loads the trained model
+
+pillow>=10.0              # opens uploaded images
+pytesseract>=0.3.10       # reads text out of lab report photos

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MedChat</title>
+<link rel="stylesheet" href="/static/style.css" />
+<link rel="icon" type="image/png" href="/static/image/logo3.png" />
+</head>
+<body>
+
+<!-- ===================== SIDEBAR ===================== -->
+<aside id="sidebar" class="sidebar">
+  <div class="side-top">
+    <button id="newChatBtn" class="side-new">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M12 5v14M5 12h14"/>
+      </svg>
+      <span id="newChatLabel">New chat</span>
+    </button>
+    <button id="sideClose" class="side-icon" title="Hide sidebar">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M15 6l-6 6 6 6"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="side-label" id="historyLabel">History</div>
+  <div id="historyList" class="history-list"></div>
+
+  <div class="side-bottom">
+    <!-- Doctor mode toggle -->
+    <div class="mode-row">
+      <div>
+        <div class="mode-title" id="modeTitle">Clinician mode</div>
+        <div class="mode-sub" id="modeSub">Batch triage &amp; clinical notes</div>
+      </div>
+      <button id="modeToggle" class="switch" role="switch" aria-checked="false">
+        <span class="knob"></span>
+      </button>
+    </div>
+    <button id="clearAllBtn" class="side-clear">Clear all history</button>
+  </div>
+</aside>
+
+<div id="scrim" class="scrim hidden"></div>
+
+<div class="shell" id="shell">
+
+<header>
+ <button id="sideOpen" class="side-icon" title="Show sidebar">
+   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+     <path d="M3 6h18M3 12h18M3 18h18"/>
+   </svg>
+ </button>
+ <div class="logo">
+    <span class="dot"></span>
+    <img src="/static/image/logo3.png" width="50" height="50">
+    <div class="brand-name">Med<span>Chat</span></div>
+  </div>
+  <div class="header-right">
+    <span id="doctorBadge" class="doc-badge hidden">Clinician mode</span>
+    
+    <!-- 1. ADDED: Language Dropdown Menu -->
+    <select id="langSelect" class="ghost" style="appearance: auto; padding-right: 1px; cursor: pointer;">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी (Hindi)</option>
+      <option value="as">অসমীয়া (Assamese)</option>
+      <option value="bn">বাংলা (Bengali)</option>
+    </select>
+    <!-- End of added dropdown -->
+
+    <button id="scoreBtn" class="chip" title="How well the model scored">T1 &middot; F1 —</button>
+  </div>
+</header>
+
+<main id="main">
+  <div class="thread" id="thread">
+
+    <div class="welcome" id="welcome">
+      
+      <!-- 2. ADDED: id="welcomeTitle" -->
+      <h1 id="welcomeTitle">What can I help you look at?</h1>
+      
+      <!-- 2. ADDED: id="welcomeSub" -->
+      <p id="welcomeSub">Paste your thyroid blood results and I'll assess them, or ask me anything
+         about how the thyroid works. You can also upload a photo of a lab report.</p>
+      
+      <div class="starters">
+        <button class="starter">46F, TSH 14.2, TT4 48, T3 1.0, FTI 51</button>
+        
+        <!-- 2. ADDED: id="start1", id="start2", id="start3" -->
+        <button class="starter" id="start1">What is TSH and why does it matter?</button>
+        <button class="starter" id="start2">What is subclinical hypothyroidism?</button>
+        <button class="starter" id="start3">How accurate is this model?</button>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="composer-wrap">
+    <div class="composer" id="composer">
+      <div id="attachBar" class="attach-bar hidden"></div>
+      <textarea id="input" rows="1"
+        placeholder="Type your results, or ask a question..."></textarea>
+      <div class="controls">
+        <button id="attachBtn" class="icon" title="Upload a lab report photo">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none"
+               stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+            <path d="M21 11.5l-8.6 8.6a5.5 5.5 0 01-7.8-7.8l8.9-8.9a3.7 3.7 0 015.2 5.2l-8.9 8.9a1.8 1.8 0 01-2.6-2.6l8.1-8.1"/>
+          </svg>
+        </button>
+        <input type="file" id="fileInput" accept="image/*" hidden />
+
+        <div class="switcher">
+          <button id="switchBtn" class="model-pill">
+            <strong id="activeId">T1</strong>
+            <span id="activeArea">Thyroid</span>
+            <svg viewBox="0 0 20 20" width="13" height="13" fill="none"
+                 stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M6 8l4 4 4-4"/>
+            </svg>
+          </button>
+          <div id="menu" class="menu hidden"></div>
+        </div>
+
+        <span class="spacer"></span>
+        <button id="sendBtn" class="send" title="Send">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+               stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <path d="M12 19V5M6 11l6-6 6 6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <p class="disclaimer" id="disclaimerText">
+      MedChat is a student project. It cannot diagnose you. Please talk to a doctor.
+    </p>
+  </div>
+</footer>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-box">
+    <button id="modalClose" class="modal-close">&times;</button>
+    <h2>How the T1 model scored</h2>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

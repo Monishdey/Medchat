@@ -1,0 +1,462 @@
+{
+  "meta": {
+    "description": "Plain-language thyroid knowledge base used by MedChat's Q&A search. Written for patient education, not clinical use.",
+    "entries": 35,
+    "sources": [
+      "NIDDK (National Institute of Diabetes and Digestive and Kidney Diseases) — nih.gov, public domain",
+      "MedlinePlus — medlineplus.gov, public domain",
+      "American Thyroid Association patient guides — thyroid.org"
+    ]
+  },
+  "faq": [
+    {
+      "q": "What is the thyroid gland and what does it do?",
+      "a": "The thyroid is a small butterfly-shaped gland sitting at the front of your neck, just below the Adam's apple. It makes hormones that set the speed of your metabolism, which is the rate your body burns energy. Those hormones touch almost every organ, so the thyroid affects your heart rate, body temperature, weight, digestion, mood, and how tired you feel.",
+      "tags": [
+        "thyroid",
+        "gland",
+        "anatomy",
+        "what is",
+        "metabolism",
+        "neck"
+      ]
+    },
+    {
+      "q": "What is hypothyroidism?",
+      "a": "Hypothyroidism means an underactive thyroid: the gland is not making enough hormone. Everything in the body slows down. Common signs are tiredness, weight gain, feeling cold when others do not, dry skin, constipation, low mood, and heavier or irregular periods. It develops slowly, often over months or years, which is why many people put it down to stress or getting older before they get tested.",
+      "tags": [
+        "hypothyroidism",
+        "underactive",
+        "slow",
+        "tired",
+        "symptoms",
+        "weight gain"
+      ]
+    },
+    {
+      "q": "What is hyperthyroidism?",
+      "a": "Hyperthyroidism is the opposite of hypothyroidism: the thyroid makes too much hormone and the body speeds up. People often notice a fast or pounding heartbeat, weight loss despite eating normally, feeling hot and sweaty, shaky hands, anxiety, and trouble sleeping. Graves' disease is the most common cause. Note that MedChat's T1 model is only trained to spot hypothyroidism, so it cannot assess this.",
+      "tags": [
+        "hyperthyroidism",
+        "overactive",
+        "fast",
+        "graves",
+        "weight loss",
+        "anxiety"
+      ]
+    },
+    {
+      "q": "What is TSH and why does it matter so much?",
+      "a": "TSH stands for Thyroid Stimulating Hormone. It is not made by the thyroid at all, it is made by the pituitary gland in your brain, and its job is to tell the thyroid how hard to work. Think of it as the brain shouting instructions. If the thyroid is lazy and hormone levels drop, the brain shouts louder, so TSH goes UP. That is why a high TSH usually means an underactive thyroid, which feels backwards until you understand who is sending the signal. TSH is the single most useful thyroid test and it is the value MedChat's model relies on most.",
+      "tags": [
+        "TSH",
+        "thyroid stimulating hormone",
+        "pituitary",
+        "high",
+        "signal",
+        "important"
+      ]
+    },
+    {
+      "q": "What is a normal TSH level?",
+      "a": "Most laboratories treat roughly 0.4 to 4.0 mIU/L as the normal adult range, though the exact numbers printed on your report depend on the lab and the machine, so always read the range next to your own result. Above the range points toward an underactive thyroid, below it toward an overactive one. Pregnancy uses different and tighter ranges.",
+      "tags": [
+        "TSH",
+        "normal",
+        "range",
+        "reference",
+        "level",
+        "numbers"
+      ]
+    },
+    {
+      "q": "What are T4, TT4 and FT4?",
+      "a": "T4, also called thyroxine, is the main hormone the thyroid actually produces. TT4 means Total T4, which counts every bit of it in your blood. FT4 means Free T4, which counts only the portion not stuck to carrier proteins, and that free portion is what your cells can really use. Most of your T4 is bound up and inactive, so free T4 often tells a clearer story. The dataset behind MedChat's model uses Total T4.",
+      "tags": [
+        "T4",
+        "TT4",
+        "FT4",
+        "thyroxine",
+        "free",
+        "total",
+        "hormone"
+      ]
+    },
+    {
+      "q": "What is T3?",
+      "a": "T3, or triiodothyronine, is the more active thyroid hormone. Your thyroid makes a little T3 directly, but most of it is created when other tissues convert T4 into T3. Because T3 usually stays normal until thyroid problems are well advanced, it is more useful for confirming an overactive thyroid than for catching an underactive one early.",
+      "tags": [
+        "T3",
+        "triiodothyronine",
+        "active",
+        "conversion",
+        "hormone"
+      ]
+    },
+    {
+      "q": "What is FTI and what is T4U?",
+      "a": "T4U is the T4 uptake, a measure of how much carrier protein is available in your blood to hold hormone. FTI, the Free Thyroxine Index, is TT4 multiplied by T4U. It is an older way of estimating free hormone that was used before labs could measure free T4 directly. It matters here because FTI is the second most important input to MedChat's model after TSH.",
+      "tags": [
+        "FTI",
+        "T4U",
+        "free thyroxine index",
+        "uptake",
+        "index",
+        "calculated"
+      ]
+    },
+    {
+      "q": "What does subclinical or compensated hypothyroidism mean?",
+      "a": "It means TSH is raised but the actual thyroid hormone levels are still normal. The gland is struggling, and the brain is compensating by shouting louder, so the numbers still come out acceptable. Many people have no symptoms at all. Guidelines usually recommend repeating the test after about 6 to 12 weeks before deciding anything, because a single raised TSH can be temporary, especially after an illness. This is one of the three answers MedChat's model can give.",
+      "tags": [
+        "subclinical",
+        "compensated",
+        "mild",
+        "borderline",
+        "early",
+        "repeat"
+      ]
+    },
+    {
+      "q": "What causes hypothyroidism?",
+      "a": "Worldwide the biggest cause is iodine deficiency. In countries where salt is iodised, the most common cause is Hashimoto's thyroiditis, an autoimmune condition where the immune system gradually attacks the thyroid. Other causes include thyroid surgery, radioactive iodine treatment, radiotherapy to the neck, certain medicines such as lithium and amiodarone, and less commonly a pituitary problem.",
+      "tags": [
+        "causes",
+        "hashimoto",
+        "autoimmune",
+        "iodine",
+        "why",
+        "surgery",
+        "lithium"
+      ]
+    },
+    {
+      "q": "What is Hashimoto's thyroiditis?",
+      "a": "Hashimoto's is an autoimmune disease where your immune system mistakenly treats your thyroid as a threat and slowly damages it. It is the leading cause of hypothyroidism in places with enough dietary iodine, and it runs in families. Doctors confirm it by testing for thyroid antibodies, usually anti-TPO. Damage builds gradually, so someone can have antibodies for years before their TSH ever drifts out of range.",
+      "tags": [
+        "hashimoto",
+        "autoimmune",
+        "antibodies",
+        "TPO",
+        "thyroiditis",
+        "cause"
+      ]
+    },
+    {
+      "q": "Who is most at risk of thyroid problems?",
+      "a": "Thyroid disease is far more common in women than men, roughly five to eight times more. Risk climbs with age, especially after 60. Other things that raise it are a family history of thyroid disease, having another autoimmune condition such as type 1 diabetes or coeliac disease, previous neck radiation, a recent pregnancy, and Down syndrome or Turner syndrome.",
+      "tags": [
+        "risk",
+        "who",
+        "women",
+        "age",
+        "family",
+        "genetics",
+        "pregnancy"
+      ]
+    },
+    {
+      "q": "How is hypothyroidism treated?",
+      "a": "The standard treatment is levothyroxine, a tablet containing the same T4 hormone your thyroid would have made. It is usually taken once a day on an empty stomach, and it replaces what is missing rather than curing the underlying cause, so most people stay on it long term. Doctors start at a low dose, recheck TSH after about 6 to 8 weeks, and adjust until levels settle. Never change the dose yourself.",
+      "tags": [
+        "treatment",
+        "levothyroxine",
+        "medication",
+        "tablet",
+        "cure",
+        "dose",
+        "thyroxine",
+        "pill",
+        "medicine",
+        "treated"
+      ]
+    },
+    {
+      "q": "How do I take levothyroxine properly?",
+      "a": "Usually first thing in the morning with water, 30 to 60 minutes before eating. Calcium tablets, iron supplements, antacids and some other medicines block its absorption, so those should be separated by around four hours. Consistency matters more than perfection: taking it the same way every day makes your blood results meaningful. If you are already on levothyroxine, tell MedChat, because it changes how your numbers should be read.",
+      "tags": [
+        "levothyroxine",
+        "how to take",
+        "empty stomach",
+        "calcium",
+        "iron",
+        "absorption",
+        "morning"
+      ]
+    },
+    {
+      "q": "Why does the model ask if I am on thyroxine?",
+      "a": "Because it changes the meaning of your results completely. Someone on levothyroxine with a normal TSH does not have a healthy thyroid, they have a treated one that is currently well controlled. And a raised TSH in a treated patient usually signals a dose that needs adjusting rather than a brand new diagnosis. The dataset MedChat learned from includes this flag, so the model uses it too.",
+      "tags": [
+        "on thyroxine",
+        "medication",
+        "input",
+        "why ask",
+        "treated",
+        "adjust"
+      ]
+    },
+    {
+      "q": "What is a goitre?",
+      "a": "A goitre is simply an enlarged thyroid, visible or felt as a swelling at the front of the neck. It can happen with an underactive thyroid, an overactive one, or a perfectly normal one. Iodine deficiency and Hashimoto's are common causes. A large goitre can press on the windpipe or gullet and cause a feeling of tightness or trouble swallowing, which needs medical assessment.",
+      "tags": [
+        "goitre",
+        "goiter",
+        "swelling",
+        "neck",
+        "enlarged",
+        "lump"
+      ]
+    },
+    {
+      "q": "What is a thyroid nodule and should I worry?",
+      "a": "A nodule is a lump within the thyroid. They are extremely common, especially as people get older, and the large majority are harmless. Doctors assess them with an ultrasound scan and sometimes a fine needle biopsy. Features that prompt closer attention include rapid growth, a hard fixed lump, hoarseness, or a history of neck radiation. Any new neck lump should be examined in person rather than self-assessed.",
+      "tags": [
+        "nodule",
+        "lump",
+        "cancer",
+        "ultrasound",
+        "biopsy",
+        "worry"
+      ]
+    },
+    {
+      "q": "Can thyroid problems affect pregnancy?",
+      "a": "Yes, and this is one of the situations where getting it right matters most. Untreated hypothyroidism in pregnancy raises the risk of miscarriage, pre-eclampsia and problems with the baby's brain development. Pregnancy also shifts the normal ranges, and hormone requirements typically rise, so many women already on levothyroxine need a higher dose. Thyroid results in pregnancy should always be interpreted by a doctor, not by a screening tool like this one.",
+      "tags": [
+        "pregnancy",
+        "pregnant",
+        "baby",
+        "miscarriage",
+        "trimester",
+        "dose"
+      ]
+    },
+    {
+      "q": "Why does the model ask about pregnancy?",
+      "a": "Because pregnancy changes both the reference ranges and the level of risk. The same TSH number can be normal in one person and concerning in a pregnant person. MedChat flags pregnancy in its explanation and directs you to a doctor, because this is exactly the case where a screening model should step back rather than reassure you.",
+      "tags": [
+        "pregnancy",
+        "input",
+        "why ask",
+        "ranges",
+        "risk"
+      ]
+    },
+    {
+      "q": "Can stress or illness change my thyroid results?",
+      "a": "Yes. A serious illness, a hospital stay, or major stress can temporarily push thyroid results around without any thyroid disease being present. Doctors call this non-thyroidal illness or sick euthyroid syndrome. It is a big reason why a single abnormal result is rarely acted on immediately, and why guidelines ask for a repeat test weeks later.",
+      "tags": [
+        "stress",
+        "illness",
+        "sick",
+        "temporary",
+        "false",
+        "repeat",
+        "euthyroid"
+      ]
+    },
+    {
+      "q": "Does diet or iodine fix a thyroid problem?",
+      "a": "Iodine is genuinely essential, since the thyroid needs it to build hormone, and deficiency causes disease. But in countries with iodised salt most people already get enough, and taking large iodine supplements can actually trigger thyroid problems rather than solve them. Autoimmune hypothyroidism cannot be cured by diet. Be sceptical of supplements marketed as thyroid boosters, and talk to a doctor before taking iodine.",
+      "tags": [
+        "diet",
+        "iodine",
+        "food",
+        "supplement",
+        "natural",
+        "cure",
+        "salt",
+        "eat",
+        "nutrition",
+        "vitamins",
+        "help",
+        "supplement",
+        "supplements",
+        "boost",
+        "booster"
+      ]
+    },
+    {
+      "q": "How often should thyroid levels be checked?",
+      "a": "When starting or changing a levothyroxine dose, TSH is usually rechecked after about 6 to 8 weeks, because it takes that long to settle. Once stable, once a year is typical. If a borderline result is found in someone without symptoms, repeating in 6 to 12 weeks is common practice before any treatment decision.",
+      "tags": [
+        "how often",
+        "frequency",
+        "monitoring",
+        "recheck",
+        "test",
+        "annual"
+      ]
+    },
+    {
+      "q": "What symptoms should make me seek help urgently?",
+      "a": "Get medical help without delay for severe difficulty breathing or swallowing, a rapidly growing neck lump, chest pain or a very fast irregular heartbeat, or extreme drowsiness and confusion with very low body temperature, which can signal a rare emergency called myxoedema coma. Thyroid disease is usually slow and manageable, but these particular signs are not ones to wait on.",
+      "tags": [
+        "urgent",
+        "emergency",
+        "serious",
+        "danger",
+        "myxoedema",
+        "breathing"
+      ]
+    },
+    {
+      "q": "What blood tests does MedChat need from me?",
+      "a": "The most important is TSH, and the model needs it before it will produce any assessment. Beyond that it uses TT4, T3, T4U and FTI, plus your age and sex. You do not need every single one, but the more you supply the more reliable the result, and MedChat tells you which values were missing and filled in with a typical value. All of these appear on a standard thyroid function panel.",
+      "tags": [
+        "input",
+        "what values",
+        "need",
+        "blood test",
+        "panel",
+        "required",
+        "TSH"
+      ]
+    },
+    {
+      "q": "How do I give MedChat my results?",
+      "a": "Two ways. Type them in plain language, for example \"46F, TSH 14.2, TT4 48, T3 1.0, FTI 51\", and MedChat will pick the numbers out. Or click the attach button and upload a photo of your lab report, and it will read the values off the page automatically before running the model. It shows you exactly what it extracted so you can correct anything it misread.",
+      "tags": [
+        "input",
+        "how to use",
+        "upload",
+        "photo",
+        "type",
+        "report",
+        "attach"
+      ]
+    },
+    {
+      "q": "How accurate is the MedChat T1 model?",
+      "a": "On 754 patient records it had never seen during training, it scored a macro F1 of about 0.987. Macro F1 is used instead of plain accuracy because 92% of the patients in the dataset are healthy, so a model that lazily answered healthy every time would look 92% accurate while being useless. Even so, the data is from a single hospital in the 1980s and the model has never been tested on a real present-day patient, so treat the number as a coursework result and not a clinical guarantee.",
+      "tags": [
+        "accuracy",
+        "how good",
+        "F1",
+        "score",
+        "reliable",
+        "performance",
+        "metrics"
+      ]
+    },
+    {
+      "q": "Can MedChat diagnose me?",
+      "a": "No, and it is important to be clear about that. It is a student project that pattern-matches your numbers against an old research dataset. It has no idea about your history, your medications, your examination, or anything you have not typed in. It cannot order a repeat test or check antibodies. Use it to understand what your numbers mean, then take them to a doctor who can see the whole picture.",
+      "tags": [
+        "diagnose",
+        "doctor",
+        "medical advice",
+        "safe",
+        "trust",
+        "limitation"
+      ]
+    },
+    {
+      "q": "Why did MedChat refuse to give me a result?",
+      "a": "The model needs a TSH value plus at least one other thyroid measurement before it will classify anything. If you only give one borderline number, guessing would be irresponsible, so it asks for more instead. This restraint is deliberate rather than a bug.",
+      "tags": [
+        "refuse",
+        "no result",
+        "not enough",
+        "why",
+        "missing",
+        "more values"
+      ]
+    },
+    {
+      "q": "What is the difference between the T1 and C1 models?",
+      "a": "T1 is the thyroid model and it works today: it screens a blood panel for hypothyroidism. C1 is planned for cancer risk and is not built yet, which is why it appears greyed out in the model menu. The switcher exists so new disease models can be plugged in without rebuilding the app.",
+      "tags": [
+        "T1",
+        "C1",
+        "models",
+        "switcher",
+        "cancer",
+        "difference",
+        "coming soon"
+      ]
+    },
+    {
+      "q": "Where does MedChat's data come from?",
+      "a": "The T1 model learned from the Thyroid Disease dataset originally collected by the Garavan Institute in Sydney and published through the UCI Machine Learning Repository, which is the same data behind most thyroid datasets on Kaggle. It holds 3,772 patient records with blood results and a confirmed diagnosis. The repository also includes a newer 2023 dataset on thyroid cancer recurrence, which is intended for the future C1 model.",
+      "tags": [
+        "data",
+        "dataset",
+        "source",
+        "kaggle",
+        "UCI",
+        "where from",
+        "training"
+      ]
+    },
+    {
+      "q": "Are the answers in this chat generated by an AI language model?",
+      "a": "No. MedChat has no language model and makes no API calls. The answers come from a fixed, human-written knowledge base stored in the project, and a search algorithm picks the closest matching entry to your question. That means it can never invent a fake medical fact, but it also means it can only answer things that were written down in advance. If nothing matches well, it says so rather than guessing.",
+      "tags": [
+        "AI",
+        "LLM",
+        "chatgpt",
+        "generated",
+        "how it works",
+        "hallucination",
+        "search"
+      ]
+    },
+    {
+      "q": "Is my data stored anywhere?",
+      "a": "Nothing is sent to or kept on a server. Your messages and any uploaded image are held in memory only for as long as it takes to answer. Your chat history is saved in your own browser's local storage, so it stays on this computer, is not visible to anyone else, and disappears if you clear your browser data or press Clear all history in the sidebar.",
+      "tags": [
+        "privacy",
+        "data",
+        "stored",
+        "saved",
+        "secure",
+        "upload",
+        "server",
+        "history",
+        "sidebar",
+        "localstorage",
+        "browser"
+      ]
+    },
+    {
+      "q": "What is clinician mode?",
+      "a": "A separate view for doctors, switched on from the sidebar. A patient has one set of results and needs them explained. A clinician has many and needs to know who to look at first. So clinician mode adds batch triage: paste one patient per line and MedChat returns them ranked by priority, with clinical flags and a ready-to-paste note for each. It sorts a queue; it never tells anyone to skip a patient.",
+      "tags": [
+        "doctor",
+        "clinician",
+        "mode",
+        "triage",
+        "batch",
+        "worklist",
+        "professional"
+      ]
+    },
+    {
+      "q": "How do I use batch triage?",
+      "a": "Turn on clinician mode in the sidebar, then paste one patient per line, for example \"P001: 46F TSH 14.2 TT4 48 FTI 51\". An identifier before a colon or dash is optional and is used as the row label. Up to 100 rows at a time. Rows without TSH plus at least one other value are listed as not assessed rather than guessed at.",
+      "tags": [
+        "batch",
+        "triage",
+        "how to",
+        "paste",
+        "multiple",
+        "patients",
+        "worklist"
+      ]
+    },
+    {
+      "q": "Why does the worklist order not simply follow confidence?",
+      "a": "Because a confident normal result must never outrank an uncertain abnormal one. Rows are sorted by priority band first, then by how many clinical flags were raised, and only then by model confidence. A 98% confident healthy patient therefore sits below a 60% confident possible hypothyroid one.",
+      "tags": [
+        "worklist",
+        "order",
+        "sorting",
+        "priority",
+        "confidence",
+        "ranking"
+      ]
+    }
+  ]
+}

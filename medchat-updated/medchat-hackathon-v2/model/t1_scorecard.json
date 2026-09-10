@@ -1,0 +1,66 @@
+{
+  "macro_f1": 0.9868,
+  "cv_mean": 0.9459,
+  "cv_std": 0.0233,
+  "n_train": 3016,
+  "n_test": 754,
+  "top_features": [
+    {
+      "name": "TSH",
+      "importance": 0.4528
+    },
+    {
+      "name": "FTI",
+      "importance": 0.2271
+    },
+    {
+      "name": "TT4",
+      "importance": 0.1861
+    },
+    {
+      "name": "T3",
+      "importance": 0.0608
+    },
+    {
+      "name": "T4U",
+      "importance": 0.0224
+    },
+    {
+      "name": "age",
+      "importance": 0.0197
+    }
+  ],
+  "per_class": {
+    "compensated_hypothyroid": {
+      "precision": 0.975,
+      "recall": 1.0,
+      "f1-score": 0.9873417721518988,
+      "support": 39.0
+    },
+    "negative": {
+      "precision": 1.0,
+      "recall": 0.9971264367816092,
+      "f1-score": 0.9985611510791367,
+      "support": 696.0
+    },
+    "primary_hypothyroid": {
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1-score": 0.9743589743589743,
+      "support": 19.0
+    },
+    "accuracy": 0.9973474801061007,
+    "macro avg": {
+      "precision": 0.975,
+      "recall": 0.9990421455938697,
+      "f1-score": 0.9867539658633366,
+      "support": 754.0
+    },
+    "weighted avg": {
+      "precision": 0.9974469496021219,
+      "recall": 0.9973474801061007,
+      "f1-score": 0.9973709692013577,
+      "support": 754.0
+    }
+  }
+}
